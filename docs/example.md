@@ -188,11 +188,11 @@ Pull from /project/go/src/gossh/passtool to /tmp/192.168.56.2 ok.
 
 如果既不指定-h 也不指定-i参数，gossh默认会从当前目录中寻找ip.txt文件作为ip文件进行批量模式执行。
 
-文件推送或者拉取过程中，设计到文件是否存在的判断，以及是否覆盖的判断，详细规则见[gossh安全管理](https://github.com/andesli/gossh/blob/master/docs/safe.md)第3节文件传递安全性。
+文件推送或者拉取过程中，设计到文件是否存在的判断，以及是否覆盖的判断，详细规则见[gossh安全管理](https://github.com/FuxiongYang/host-ssh/blob/master/docs/safe.md)第3节文件传递安全性。
 
 ## 3 使用总结
 
 gossh可以完成简单的命令执行，文件传递等工作，也可以完成复查的工作。完成复杂工作需要在本地编写脚本，推送脚本文件，然后远程执行脚本，再将脚本执行结果文件拉取到本地分析处理。
 
-![用法](https://github.com/andesli/gossh/raw/master/docs/images/gossh_use.png)
+![用法](https://github.com/FuxiongYang/host-ssh/raw/master/docs/images/gossh_use.png)
 

@@ -29,4 +29,4 @@ gossh使用go语言编写，理论上只要go语言支持的平台都能使用go
 5.任何问题请联系 email.tata@qq.com
 
 为方便大家使用，提供了一个qq技术群:851647540， 可直接扫描下方二维码。
-![qq群](https://github.com/andesli/gossh/raw/master/docs/images/gossh_qq.png)
+![qq群](https://github.com/FuxiongYang/host-ssh/raw/master/docs/images/gossh_qq.png)

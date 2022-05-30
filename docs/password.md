@@ -21,18 +21,18 @@ gossh对于密码的支持比较灵活，可以通过-p参数指定，批量模�
 
 - 单机模式密码获取流程
 
-![单机模式](https://github.com/andesli/gossh/raw/master/docs/images/singlepass.png)
+![单机模式](https://github.com/FuxiongYang/host-ssh/raw/master/docs/images/singlepass.png)
 
 - 批量模式模式密码获取流程
 
-![批量模式](https://github.com/andesli/gossh/raw/master/docs/images/batchpass.png)
+![批量模式](https://github.com/FuxiongYang/host-ssh/raw/master/docs/images/batchpass.png)
 
 ## 3.密码扩展
 
 gossh支持密码插件的方式访问密码，通过定义一套标准的密码获取接口，外部插件只要实现该接口，就能注册进去。gossh内部默认实现了一个通过db获取密码的插件。
 
 1. 通过访问db获取密码。
-gossh 提供了一个简单的默认实现，如果不指定操作的机器密码，gossh默认会访问：[gossh/auth/db/query.go](https://github.com/andesli/gossh/blob/master/auth/db/query.go#L10)中指定的db库表中查询。
+gossh 提供了一个简单的默认实现，如果不指定操作的机器密码，gossh默认会访问：[gossh/auth/db/query.go](https://github.com/FuxiongYang/host-ssh/blob/master/auth/db/query.go#L10)中指定的db库表中查询。
 
 ```
  10 const (
@@ -44,9 +44,9 @@ gossh 提供了一个简单的默认实现，如果不指定操作的机器密�
  17     dbname   = "cmdb"
 
 ```
-db库表初始化sql参见 [gossh/sql/db_init.sql](https://github.com/andesli/gossh/blob/master/sql/db_init.sql)
+db库表初始化sql参见 [gossh/sql/db_init.sql](https://github.com/FuxiongYang/host-ssh/blob/master/sql/db_init.sql)
 
-[gossh通过db获取密码环境搭建过程](https://github.com/andesli/gossh/blob/master/docs/use_mysql_db.md)
+[gossh通过db获取密码环境搭建过程](https://github.com/FuxiongYang/host-ssh/blob/master/docs/use_mysql_db.md)
 
 2. 通过web api方式。
 该种方法只写了框架，需要的同学可以将其与自己的密码管理系统对接。
@@ -101,7 +101,7 @@ func init() {
 ```
 ## 5. 加密key
 
-加解密密码的默认key存放在 [key](https://github.com/andesli/gossh/blob/master/enc/key.go) ,gossh和passtool都支持通过-key选项指定加解密的key。
+加解密密码的默认key存放在 [key](https://github.com/FuxiongYang/host-ssh/blob/master/enc/key.go) ,gossh和passtool都支持通过-key选项指定加解密的key。
 
 
 注意:  

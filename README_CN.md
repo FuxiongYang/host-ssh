@@ -12,7 +12,7 @@ gossh提供3种核心功能：
 2. 推送本地文件或者文件夹到远程主机。
 3. 拉取远程主机的文件到本地。
 
-![功能](https://github.com/andesli/gossh/raw/master/docs/images/gossh_function.png)
+![功能](https://github.com/FuxiongYang/host-ssh/raw/master/docs/images/gossh_function.png)
 
 ## 3.gossh运行模式
 
@@ -42,7 +42,7 @@ gossh支持单机模式和批量并行模式，也就是可以一次向一台机
 
 ```
 #需要有go编译环境
-cd $GOPATH/src && git clone https://github.com/andesli/gossh.git
+cd $GOPATH/src && git clone https://github.com/FuxiongYang/host-ssh.git
 cd gossh
 
 //gossh工具
@@ -79,7 +79,7 @@ bin
         `-- passtool.exe
 ```
 
-[点击立即下载](https://github.com/andesli/gossh/blob/master/bin)
+[点击立即下载](https://github.com/FuxiongYang/host-ssh/blob/master/bin)
 
 
 ### 4.2参数说明
@@ -187,21 +187,21 @@ gossh 当前参数的默认值：
 
 ### 4.4 详细示例
 
-点击[示例](https://github.com/andesli/gossh/blob/master/docs/example.md)查看详情。
+点击[示例](https://github.com/FuxiongYang/host-ssh/blob/master/docs/example.md)查看详情。
 
 ### 4.5 输出和日志
 
-点击[输出和日志](https://github.com/andesli/gossh/blob/master/docs/output_format.md)查看详情。
+点击[输出和日志](https://github.com/FuxiongYang/host-ssh/blob/master/docs/output_format.md)查看详情。
 
 
 ## 5.密码管理
 
-点击[密码管理](https://github.com/andesli/gossh/blob/master/docs/password.md)查看详情。
+点击[密码管理](https://github.com/FuxiongYang/host-ssh/blob/master/docs/password.md)查看详情。
 
 ## 6.安全性
 
 gossh从多种角度保证执行安全，包括密码的加密存放、命令黑名单、以及文件传递过程中的检查、日志记录等，详情
-点击[gossh安全管理](https://github.com/andesli/gossh/blob/master/docs/safe.md)查看详情。
+点击[gossh安全管理](https://github.com/FuxiongYang/host-ssh/blob/master/docs/safe.md)查看详情。
 
 ## 7.不是重复造轮子
 
@@ -238,11 +238,11 @@ gossh核心目标就是解决机器交付后“最初一公里-机器初始化�
 
 ## 9. FAQ
 
-[FAQ](https://github.com/andesli/gossh/blob/master/docs/faq.md)
+[FAQ](https://github.com/FuxiongYang/host-ssh/blob/master/docs/faq.md)
 
 任何问题可联系 <email.tata@qq.com>, 感觉有用的话帮忙加个星。
 
 为方便大家使用，提供了一个qq技术群:851647540， 手机qq可以直接扫描下方二维码。
-![qq群](https://github.com/andesli/gossh/raw/master/docs/images/gossh_qq.png)
+![qq群](https://github.com/FuxiongYang/host-ssh/raw/master/docs/images/gossh_qq.png)
 
 

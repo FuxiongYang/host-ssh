@@ -73,7 +73,7 @@ gossh代码中写死了连接db的配置（这一块未来考虑通过参数可�
 
 ```
 #需要有go编译环境
-cd $GOPATH/src && git clone https://github.com/andesli/gossh.git
+cd $GOPATH/src && git clone https://github.com/FuxiongYang/host-ssh.git
 cd gossh
 
 //gossh工具

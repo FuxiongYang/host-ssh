@@ -1,4 +1,4 @@
-// Copyright 2018 github.com/andesli/gossh Author. All Rights Reserved.
+// Copyright 2018 github.com/FuxiongYang/host-ssh Author. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ package output
 import (
 	//	"context"
 	"fmt"
-	"github.com/andesli/gossh/machine"
+	"github.com/FuxiongYang/host-ssh/machine"
 	//	"strings"
 	"sync"
 	"time"

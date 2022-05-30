@@ -1,4 +1,4 @@
-// Copyright 2018 github.com/andesli/gossh Author. All Rights Reserved.
+// Copyright 2018 github.com/FuxiongYang/host-ssh Author. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@ package machine
 import (
 	"errors"
 	"fmt"
-	"github.com/andesli/gossh/auth"
-	_ "github.com/andesli/gossh/auth/db"
+	"github.com/FuxiongYang/host-ssh/auth"
+	_ "github.com/FuxiongYang/host-ssh/auth/db"
 	"golang.org/x/crypto/ssh"
-	//_ "github.com/andesli/gossh/auth/web"
-	"github.com/andesli/gossh/logs"
-	"github.com/andesli/gossh/scp"
-	"github.com/andesli/gossh/tools"
+	//_ "github.com/FuxiongYang/host-ssh/auth/web"
+	"github.com/FuxiongYang/host-ssh/logs"
+	"github.com/FuxiongYang/host-ssh/scp"
+	"github.com/FuxiongYang/host-ssh/tools"
 	"io"
 	"net"
 	"os"

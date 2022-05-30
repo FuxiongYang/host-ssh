@@ -1,4 +1,4 @@
-// Copyright 2018 github.com/andesli/gossh Author. All Rights Reserved.
+// Copyright 2018 github.com/FuxiongYang/host-ssh Author. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,15 +18,15 @@ package run
 
 import (
 	"fmt"
-	"github.com/andesli/gossh/machine"
-	"github.com/andesli/gossh/output"
+	"github.com/FuxiongYang/host-ssh/machine"
+	"github.com/FuxiongYang/host-ssh/output"
 	//	"net"
 	//	"strings"
 	//"context"
 	"errors"
-	"github.com/andesli/gossh/config"
-	"github.com/andesli/gossh/logs"
-	//	"github.com/andesli/gossh/tools"
+	"github.com/FuxiongYang/host-ssh/config"
+	"github.com/FuxiongYang/host-ssh/logs"
+	//	"github.com/FuxiongYang/host-ssh/tools"
 	"path/filepath"
 	"sync"
 )

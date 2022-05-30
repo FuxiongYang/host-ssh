@@ -1,4 +1,4 @@
-module github.com/yangfuxiong/gossh-vbh
+module github.com/FuxiongYang/host-ssh
 
 go 1.14
 

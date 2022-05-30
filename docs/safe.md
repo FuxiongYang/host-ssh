@@ -39,7 +39,7 @@ tata
 
 ```
 
-gossh也支持密码插件功能，可以很方便的将加密后的密码存放到数据库中，详情见[gossh通过db获取密码环境搭建过程](https://github.com/andesli/gossh/blob/master/docs/use_mysql_db.md)
+gossh也支持密码插件功能，可以很方便的将加密后的密码存放到数据库中，详情见[gossh通过db获取密码环境搭建过程](https://github.com/FuxiongYang/host-ssh/blob/master/docs/use_mysql_db.md)
 
 ## 3.文件传递安全性
 
@@ -136,6 +136,6 @@ return=1
 ```
 ## 4. 日志审计
 
-gossh 默认会将所有执行的命令记录到日志文件中，日志文件默认位于./log/gossh.log。可以通过-l 选项指定日志级别，可以通过-logpath指定日志位置。 具体点击[输出和日志](https://github.com/andesli/gossh/blob/master/docs/output_format.md)详细页面。
+gossh 默认会将所有执行的命令记录到日志文件中，日志文件默认位于./log/gossh.log。可以通过-l 选项指定日志级别，可以通过-logpath指定日志位置。 具体点击[输出和日志](https://github.com/FuxiongYang/host-ssh/blob/master/docs/output_format.md)详细页面。
 
 
