@@ -1,4 +1,4 @@
-# build gossh and passtool 
+# build host-ssh and passtool
 # support architecture: amd64 386 
 # suporrt os: linux and windows
 # authur: andes 

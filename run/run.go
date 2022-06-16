@@ -1,4 +1,4 @@
-// Copyright 2018 github.com/FuxiongYang/host-ssh Author. All Rights Reserved.
+// Copyright 2018 github.com/FuxiongYang/host-remoteProtocol Author. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import (
 	"errors"
 	"github.com/FuxiongYang/host-ssh/config"
 	"github.com/FuxiongYang/host-ssh/logs"
-	//	"github.com/FuxiongYang/host-ssh/tools"
+	//	"github.com/FuxiongYang/host-remoteProtocol/tools"
 	"path/filepath"
 	"sync"
 )
@@ -39,7 +39,7 @@ type CommonUser struct {
 	user    string
 	port    string
 	psw     string
-	force   bool
+	Force   bool
 	encflag bool
 }
 
@@ -48,7 +48,7 @@ func NewUser(user, port, psw string, force, encflag bool) *CommonUser {
 		user:    user,
 		port:    port,
 		psw:     psw,
-		force:   force,
+		Force:   force,
 		encflag: encflag,
 	}
 
@@ -61,7 +61,7 @@ func SingleRun(host, cmd string, cu *CommonUser, force bool, timeout int) {
 
 //func ServersRun(cmd string, cu *CommonUser, wt *sync.WaitGroup, crs chan machine.Result, ipFile string, ccons chan struct{}) {
 func ServersRun(cmd string, cu *CommonUser, wt *sync.WaitGroup, crs chan machine.Result, ipFile string, ccons chan struct{}, safe bool, timeout int) {
-	hosts, err := parseIpfile(ipFile, cu)
+	hosts, err := ParseIpfile(ipFile, cu)
 	if err != nil {
 		log.Error("Parse %s error, error=%s", ipFile, err)
 		return
@@ -79,7 +79,7 @@ func ServersRun(cmd string, cu *CommonUser, wt *sync.WaitGroup, crs chan machine
 	if cap(ccons) == 1 {
 		log.Debug("串行执行")
 		for _, h := range hosts {
-			server := machine.NewCmdServer(h.Ip, h.Port, h.User, h.Psw, "cmd", cmd, cu.force, timeout)
+			server := machine.NewCmdServer(h.Ip, h.Port, h.User, h.Psw, "cmd", cmd, cu.Force, timeout)
 			r := server.SRunCmd()
 			if r.Err != nil && safe {
 				log.Debug("%s执行出错", h.Ip)
@@ -95,7 +95,7 @@ func ServersRun(cmd string, cu *CommonUser, wt *sync.WaitGroup, crs chan machine
 
 		for _, h := range hosts {
 			ccons <- struct{}{}
-			server := machine.NewCmdServer(h.Ip, h.Port, h.User, h.Psw, "cmd", cmd, cu.force, timeout)
+			server := machine.NewCmdServer(h.Ip, h.Port, h.User, h.Psw, "cmd", cmd, cu.Force, timeout)
 			wt.Add(1)
 			go server.PRunCmd(crs)
 		}
@@ -121,7 +121,7 @@ func SinglePush(ip, src, dst string, cu *CommonUser, f bool, timeout int) {
 
 //push file or dir to remote servers
 func ServersPush(src, dst string, cu *CommonUser, ipFile string, wt *sync.WaitGroup, ccons chan struct{}, crs chan machine.Result, timeout int) {
-	hosts, err := parseIpfile(ipFile, cu)
+	hosts, err := ParseIpfile(ipFile, cu)
 	if err != nil {
 		log.Error("Parse %s error, error=%s", ipFile, err)
 		return
@@ -136,7 +136,7 @@ func ServersPush(src, dst string, cu *CommonUser, ipFile string, wt *sync.WaitGr
 
 	for _, h := range hosts {
 		ccons <- struct{}{}
-		server := machine.NewScpServer(h.Ip, h.Port, h.User, h.Psw, "scp", src, dst, cu.force, timeout)
+		server := machine.NewScpServer(h.Ip, h.Port, h.User, h.Psw, "scp", src, dst, cu.Force, timeout)
 		wt.Add(1)
 		go server.PRunScp(crs)
 	}
@@ -149,7 +149,7 @@ func SinglePull(host string, cu *CommonUser, src, dst string, force bool) {
 
 // pull romote server file to local
 func ServersPull(src, dst string, cu *CommonUser, ipFile string, force bool) {
-	hosts, err := parseIpfile(ipFile, cu)
+	hosts, err := ParseIpfile(ipFile, cu)
 	if err != nil {
 		log.Error("Parse %s error, error=%s", ipFile, err)
 		return
@@ -162,14 +162,14 @@ func ServersPull(src, dst string, cu *CommonUser, ipFile string, force bool) {
 		ip := h.Ip
 
 		localPath := filepath.Join(src, ip)
-		server := machine.NewPullServer(h.Ip, h.Port, h.User, h.Psw, "scp", localPath, dst, cu.force)
+		server := machine.NewPullServer(h.Ip, h.Port, h.User, h.Psw, "scp", localPath, dst, cu.Force)
 		err = server.PullScp()
 		output.PrintPullResult(ip, localPath, dst, err)
 	}
 }
 
 //common logic
-func parseIpfile(ipFile string, cu *CommonUser) ([]config.Host, error) {
+func ParseIpfile(ipFile string, cu *CommonUser) ([]config.Host, error) {
 	hosts, err := config.ParseIps(ipFile, cu.encflag)
 	if err != nil {
 		log.Error("Parse Ip File %s error,%s\n", ipFile, err)

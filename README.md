@@ -36,7 +36,7 @@ The ip file can be specified by the -i parameter, and the concurrency can be spe
 The reason why the error exit is not provided in the parallel mode is that it is difficult to stop the execution of the entire task immediately under the parallel execution. The serial mode is easier to control. In daily use, you can use the serial mode verification function first, and then turn on the parallel mode to improve effectiveness.
 
 
-## 4.Getting started
+## 4.Getting Started
 
 ### 4.1Install
 
@@ -179,7 +179,7 @@ If no optional fields are provided, gossh obtains the command line parameters th
 
 [example](https://github.com/FuxiongYang/host-ssh/blob/master/docs/example.md)detail。
 
-### 4.5 Log 
+### 4.5 log 
 
 [logs](https://github.com/FuxiongYang/host-ssh/blob/master/docs/output_format.md)detail。
 

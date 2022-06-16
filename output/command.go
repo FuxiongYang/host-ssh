@@ -1,4 +1,4 @@
-// Copyright 2018 github.com/FuxiongYang/host-ssh Author. All Rights Reserved.
+// Copyright 2018 github.com/FuxiongYang/host-remoteProtocol Author. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,9 @@ package output
 import (
 	//	"context"
 	"fmt"
+	"github.com/FuxiongYang/host-ssh/logs"
 	"github.com/FuxiongYang/host-ssh/machine"
+
 	//	"strings"
 	"sync"
 	"time"
@@ -29,21 +31,27 @@ const (
 	TIMEOUT = 4500
 )
 
+var (
+	log = logs.NewLogger()
+)
+
 //new print result
 func Print(res machine.Result) {
-	fmt.Printf("ip=%s\n", res.Ip)
+	//fmt.Printf("ip=%s\n", res.Ip)
 	//index := strings.Index(cmd, ";")
 	//newcmd := cmd[index+1:]
 	//fmt.Printf("ip=%s|command=%s\n", ip, cmd)
-	fmt.Printf("command=%s\n", res.Cmd)
+	//fmt.Printf("command=%s\n", res.Cmd)
 	if res.Err != nil {
-		fmt.Printf("return=1\n")
-		fmt.Printf("%s\n", res.Err)
+		//fmt.Printf("return=1\n")
+		log.Error("return=1\n %s\n", res.Err)
+		//fmt.Printf("%s\n", res.Err)
 	} else {
-		fmt.Printf("return=0\n")
-		fmt.Printf("%s\n", res.Result)
+		//fmt.Printf("return=0\n")
+		log.Debug("return=0\n %s\n", res.Result)
+		//fmt.Printf("%s\n", res.Result)
 	}
-	fmt.Println("----------------------------------------------------------")
+	//fmt.Println("----------------------------------------------------------")
 }
 
 func PrintResults2(crs chan machine.Result, ls int, wt *sync.WaitGroup, ccons chan struct{}, timeout int) {
@@ -55,6 +63,7 @@ func PrintResults2(crs chan machine.Result, ls int, wt *sync.WaitGroup, ccons ch
 		select {
 		case rs := <-crs:
 			//PrintResult(rs.Ip, rs.Cmd, rs.Result)
+			//log.Debug("execute result is %v\n", rs)
 			Print(rs)
 		case <-time.After(time.Second * time.Duration(timeout)):
 			fmt.Printf("getSSHClient error,SSH-Read-TimeOut,Timeout=%ds", timeout)

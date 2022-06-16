@@ -28,10 +28,13 @@ const (
 //declare only one log instance. all the app use it to write logs
 var (
 	log = logs.NewLogger(1000)
+	//Log      = logs.NewLogger()
 )
 
 //return  a point to log instance for other package
 // all other packages in this app use this functions to get a log instance for writing logs
 func NewLogger() *logs.BeeLogger {
+	log = logs.NewLogger(1000)
+	log.EnableFuncCallDepth(true)
 	return log
 }

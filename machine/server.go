@@ -1,4 +1,4 @@
-// Copyright 2018 github.com/FuxiongYang/host-ssh Author. All Rights Reserved.
+// Copyright 2018 github.com/FuxiongYang/host-remoteProtocol Author. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import (
 	"github.com/FuxiongYang/host-ssh/auth"
 	_ "github.com/FuxiongYang/host-ssh/auth/db"
 	"golang.org/x/crypto/ssh"
-	//_ "github.com/FuxiongYang/host-ssh/auth/web"
+	//_ "github.com/FuxiongYang/host-remoteProtocol/auth/web"
 	"github.com/FuxiongYang/host-ssh/logs"
 	"github.com/FuxiongYang/host-ssh/scp"
 	"github.com/FuxiongYang/host-ssh/tools"
@@ -74,6 +74,23 @@ type Result struct {
 	Cmd    string
 	Result string
 	Err    error
+}
+
+func NewSSHServer(ip, port, user, psw string, force bool, timeout int) *Server {
+	server := &Server{
+		Ip:      ip,
+		Port:    port,
+		User:    user,
+		Action:  "execute",
+		Psw:     psw,
+		Force:   force,
+		Timeout: timeout,
+	}
+	if psw == "" {
+		server.SetPsw()
+		//log.Debug("server.Psw=%s", server.Psw)
+	}
+	return server
 }
 
 func NewCmdServer(ip, port, user, psw, action, cmd string, force bool, timeout int) *Server {
@@ -164,6 +181,19 @@ func (server *Server) PRunCmd(crs chan Result) {
 func (s *Server) SetCmd(cmd string) {
 	s.Cmd = cmd
 }
+
+// generate ssh session
+func (server *Server) GenerateClients() (*ssh.Client, error){
+	if server.Psw == NO_PASSWORD {
+		return nil, fmt.Errorf(NO_PASSWORD)
+	}
+	client, err := server.getSshClient()
+	if err != nil {
+		return nil,  err
+	}
+	return client, nil
+}
+
 
 //run command in sequence
 func (server *Server) RunCmd() (result string, err error) {
@@ -409,7 +439,7 @@ func (server *Server) RunScpFile() (result string, err error) {
 	return string(bs), nil
 }
 
-// implement ssh auth method [password keyboard-interactive] and [password]
+// implement remoteProtocol auth method [password keyboard-interactive] and [password]
 func (server *Server) getSshClient() (client *ssh.Client, err error) {
 	authMethods := []ssh.AuthMethod{}
 	keyboardInteractiveChallenge := func(
@@ -451,8 +481,8 @@ func (server *Server) getSshClient() (client *ssh.Client, err error) {
 		},
 		Timeout: (time.Duration(server.Timeout)) * time.Second,
 	}
-	//psw := []ssh.AuthMethod{ssh.Password(server.Psw)}
-	//Conf := ssh.ClientConfig{User: server.User, Auth: psw}
+	//psw := []remoteProtocol.AuthMethod{remoteProtocol.Password(server.Psw)}
+	//Conf := remoteProtocol.ClientConfig{User: server.User, Auth: psw}
 	ip_port := server.Ip + ":" + server.Port
 	client, err = ssh.Dial("tcp", ip_port, sshConfig)
 	return

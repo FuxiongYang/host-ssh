@@ -15,7 +15,7 @@ create table if not exists  t_password_info (
 		  PRIMARY KEY (hostName,userName)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---create db user for gossh
+--create db user for host-ssh
 create user 'mysql_user'@'localhost' identified by 'mysql_pass';
 grant  select on cmdb.* to 'mysql_user'@'localhost';
 
